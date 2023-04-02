@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block title %}
+<title>Card List</title>
+{% endblock %} {% block content %}
+<h1>Card List</h1>
+{% for card in cards %}
+<a href="{% url 'cards_detail' card.id %}">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title"> {{ card.name }} </span>
+      <p>{{ card.game }}</p>
+      <p>{{ card.condition }}</p>
+      <p>{{ card.price }}</p>
+    </div>
+  </div>
+</a>
+
+{% endfor %} {% endblock %}
