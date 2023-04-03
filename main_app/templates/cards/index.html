@@ -2,16 +2,23 @@
 <title>Card List</title>
 {% endblock %} {% block content %}
 <h1>Card List</h1>
-{% for card in cards %}
-<a href="{% url 'cards_detail' card.id %}">
-  <div class="card">
-    <div class="card-content">
-      <span class="card-title"> {{ card.name }} </span>
-      <p>{{ card.game }}</p>
-      <p>{{ card.condition }}</p>
-      <p>{{ card.price }}</p>
-    </div>
+<div class="row">
+  {% for card_item in cards %}
+  <div class="col s12 m6 l4">
+    <a href="{% url 'cards_detail' card_item.id %}">
+      <div class="card">
+        <div class="card-image">
+          <img src="https://product-images.tcgplayer.com/263114.jpg" />
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{ card_item.name }}</span>
+          <p>{{ card_item.game }}</p>
+          <p>{{ card_item.condition }}</p>
+          <p>${{ card_item.value }}</p>
+        </div>
+      </div>
+    </a>
   </div>
-</a>
-
-{% endfor %} {% endblock %}
+  {% endfor %}
+</div>
+{% endblock %}

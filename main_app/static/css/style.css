@@ -7,3 +7,26 @@ body {
 main {
   flex-grow: 1;
 }
+
+header a:first-child {
+  margin-left: 30px;
+}
+
+nav ul li a {
+  font-size: 25px !important;
+}
+
+footer p {
+  margin-left: 30px;
+}
+
+.card-content span {
+  color: black;
+  font-size: 30px !important;
+  text-decoration: underline;
+}
+
+.card-content p {
+  color: black;
+  font-size: 30px !important;
+}

@@ -4,11 +4,14 @@
 <h1>Card Details</h1>
 
 <div class="card">
+  <div class="card-image">
+    <img src="https://product-images.tcgplayer.com/263114.jpg" />
+  </div>
   <div class="card-content">
     <span class="card-title"> {{ card.name }} </span>
     <p>{{ card.game }}</p>
     <p>{{ card.condition }}</p>
-    <p>{{ card.price }}</p>
+    <p>${{ card.value }}</p>
   </div>
 </div>
 {% endblock %}
