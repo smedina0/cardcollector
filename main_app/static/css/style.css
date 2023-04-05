@@ -2,31 +2,44 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #663399;
 }
+
 main {
   flex-grow: 1;
 }
 
-header a:first-child {
-  margin-left: 30px;
+h1 {
+  color: #fff;
 }
 
-nav ul li a {
-  font-size: 25px !important;
-}
-
-footer p {
-  margin-left: 30px;
-}
-
-.card-content span {
-  color: black;
-  font-size: 30px !important;
-  text-decoration: underline;
+p {
+  color: #fff;
 }
 
 .card-content p {
-  color: black;
-  font-size: 30px !important;
+  color: #000;
+}
+.card-title {
+  text-decoration: underline;
+}
+
+label {
+  color: white !important;
+  font-size: 30px;
+}
+
+input {
+  border: 1px solid #fff !important;
+  color: white;
+}
+
+textarea {
+  border: 1px solid #fff !important;
+  color: white;
+}
+
+.card-action a {
+  color: black !important;
+  text-decoration: underline;
 }

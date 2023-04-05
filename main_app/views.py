@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .models import Card
 
 # Create your views here.
@@ -32,13 +33,44 @@ def about(request):
     return render(request, 'about.html')
 
 
-def cards_index(request):
-    cards = Card.objects.all()
-    return render(request, 'cards/index.html', {'cards': cards})
+# def cards_index(request):
+#     cards = Card.objects.all()
+#     return render(request, 'cards/index.html', {'cards': cards})
 
-# NOTE: url params are explicitly passed to view functions seperate from the request object
+# # NOTE: url params are explicitly passed to view functions seperate from the request object
 
 
-def cards_detail(request, card_id):
-    card = Card.objects.get(id=card_id)
-    return render(request, 'cards/detail.html', {'card': card})
+# def cards_detail(request, card_id):
+#     card = Card.objects.get(id=card_id)
+#     return render(request, 'cards/detail.html', {'card': card})
+
+class CardList(ListView):
+    model = Card
+    context_object_name = 'cards'
+    template_name = 'cards/card_index.html'
+
+
+class CardDetail(DetailView):
+    model = Card
+    context_object_name = 'card'
+    template_name = 'cards/card_detail.html'
+    pk_url_kwarg = 'card_id'
+
+
+class CardCreate(CreateView):
+    model = Card
+    fields = '__all__'
+    # success_url = '/cards/'
+    template_name = 'cards/card_form.html'
+
+
+class CardUpdate(UpdateView):
+    model = Card
+    fields = ['name', 'game', 'condition', 'value']
+    template_name = 'cards/card_form.html'
+
+
+class CardDelete(DeleteView):
+    model = Card
+    success_url = '/cards/'
+    template_name = 'cards/card_confirm_delete.html'

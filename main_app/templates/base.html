@@ -16,20 +16,23 @@
   </head>
   <body>
     <header class="navbar-fixed">
-      <nav class="nav-wrapper indigo darken-4">
+      <nav class="nav-wrapper orange darken-4">
         <a class="left brand-logo" href="/">CardCollector</a>
         <ul class="right">
           <li>
             <a href="{% url 'about' %}">About</a>
           </li>
           <li>
-            <a href="{% url 'cats_index' %}">Card List</a>
+            <a href="{% url 'card_index' %}">Card List</a>
+          </li>
+          <li>
+            <a href="{% url 'card_create' %}">Add a Card</a>
           </li>
         </ul>
       </nav>
     </header>
     <main class="container">{% block content %} {% endblock %}</main>
-    <footer class="page-footer indigo darken-4">
+    <footer class="page-footer orange darken-4">
       <p>&copy; 2021 CardCollector</p>
     </footer>
   </body>
