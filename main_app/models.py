@@ -17,3 +17,21 @@ class Card(models.Model):
 
     def get_absolute_url(self):
         return reverse('card_detail', kwargs={'card_id': self.id})
+
+
+class Cleaning(models.Model):
+    TOOLS = (
+        ('C', 'Cotton Swab'),
+        ('B', 'Brush'),
+        ('S', 'Sponge'),
+        ('P', 'Paper Towel'),
+        ('A', 'Air Duster'),
+        ('O', 'Other')
+    )
+
+    date = models.DateField()
+    tool = models.CharField(max_length=1, choices=TOOLS, default=TOOLS[0][0])
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_tool_display()} on {self.date}"
