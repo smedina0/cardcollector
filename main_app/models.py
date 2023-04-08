@@ -29,8 +29,9 @@ class Cleaning(models.Model):
         ('O', 'Other')
     )
 
-    date = models.DateField()
-    tool = models.CharField(max_length=1, choices=TOOLS, default=TOOLS[0][0])
+    date = models.DateField('cleaning date')
+    tool = models.CharField(max_length=1, choices=TOOLS,
+                            default=TOOLS[0][0], verbose_name='cleaning tool')
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
 
     def __str__(self):

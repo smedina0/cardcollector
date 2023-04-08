@@ -2,17 +2,39 @@
 <title>Card Details</title>
 {% endblock %}
 <h1>Card Details</h1>
-
-<div class="card">
-  <div class="card-content">
-    <span class="card-title"> {{ card.name }} </span>
-    <p>{{ card.game }}</p>
-    <p>{{ card.condition }}</p>
-    <p>${{ card.value }}</p>
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title"> {{ card.name }} </span>
+        <p>{{ card.game }}</p>
+        <p>{{ card.condition }}</p>
+        <p>${{ card.value }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'card_update' card.id %}">Update</a>
+        <a href="{% url 'card_delete' card.id %}">Delete</a>
+      </div>
+    </div>
   </div>
-  <div class="card-action">
-    <a href="{% url 'card_update' card.id %}">Update</a>
-    <a href="{% url 'card_delete' card.id %}">Delete</a>
+  <div class="col s6">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Cleaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cleaning in card.cleaning_set.all %}
+        <tr>
+          <td>{{ cleaning.date }}</td>
+          <td>{{ cleaning.get_tool_display }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
+
 {% endblock %}
