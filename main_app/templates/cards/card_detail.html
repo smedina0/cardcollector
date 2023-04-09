@@ -18,6 +18,10 @@
     </div>
   </div>
   <div class="col s6">
+    <form action="{% url 'add_cleaning' card.id %}" method="POST">
+      {% csrf_token %} {{ cleaning_form.as_p }}
+      <input type="submit" value="Add Cleaning" class="btn blue" />
+    </form>
     <table class="striped">
       <thead>
         <tr>
@@ -36,5 +40,18 @@
     </table>
   </div>
 </div>
+
+<script>
+  const datePickerEl = document.getElementById('id_date');
+  const formSelectEl = document.getElementById('id_tool');
+
+  M.Datepicker.init(datePickerEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true,
+  });
+  M.FormSelect.init(formSelectEl);
+</script>
 
 {% endblock %}

@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Card
+from .forms import CleaningForm
 
 # Create your views here.
 
@@ -53,8 +54,23 @@ class CardList(ListView):
 class CardDetail(DetailView):
     model = Card
     context_object_name = 'card'
+    cleaning_form = CleaningForm()
     template_name = 'cards/card_detail.html'
     pk_url_kwarg = 'card_id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['cleaning_form'] = CleaningForm()
+        return context
+
+
+def add_cleaning(request, card_id):
+    form = CleaningForm(request.POST)
+    if form.is_valid():
+        new_cleaning = form.save(commit=False)
+        new_cleaning.card_id = card_id
+        new_cleaning.save()
+    return redirect('card_detail', card_id=card_id)
 
 
 class CardCreate(CreateView):

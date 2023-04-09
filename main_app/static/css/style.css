@@ -43,3 +43,7 @@ textarea {
   color: black !important;
   text-decoration: underline;
 }
+
+td {
+  color: black;
+}

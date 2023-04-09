@@ -11,4 +11,6 @@ urlpatterns = [
     path('cards/create/', views.CardCreate.as_view(), name='card_create'),
     path('cards/<int:pk>/update/', views.CardUpdate.as_view(), name='card_update'),
     path('cards/<int:pk>/delete/', views.CardDelete.as_view(), name='card_delete'),
+    path('cards/<int:card_id>/add_cleaning/',
+         views.add_cleaning, name='add_cleaning'),
 ]
