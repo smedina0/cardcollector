@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Card
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import Card, Vendor
 from .forms import CleaningForm
 
 # Create your views here.
@@ -44,6 +44,37 @@ def about(request):
 # def cards_detail(request, card_id):
 #     card = Card.objects.get(id=card_id)
 #     return render(request, 'cards/detail.html', {'card': card})
+
+class VendorList(ListView):
+    model = Vendor
+    context_object_name = 'cards'
+    template_name = 'vendors/index.html'
+
+
+class VendorDetail(DetailView):
+    model = Vendor
+    context_object_name = 'vendor'
+    template_name = 'vendors/detail.html'
+    pk_url_kwarg = 'vendor_id'
+
+
+class VendorCreate(CreateView):
+    model = Vendor
+    fields = '__all__'
+    template_name = 'vendors/form.html'
+
+
+class VendorUpdate(UpdateView):
+    model = Vendor
+    fields = '__all__'
+    template_name = 'vendors/form.html'
+
+
+class VendorDelete(DeleteView):
+    model = Vendor
+    success_url = '/vendors/'
+    template_name = 'vendors/confirm_delete.html'
+
 
 class CardList(ListView):
     model = Card

@@ -39,3 +39,16 @@ class Cleaning(models.Model):
 
     class Meta:
         ordering = '-date',
+
+
+class Vendor(models.Model):
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("vendor_detail", kwargs={"vendor_id": self.id})

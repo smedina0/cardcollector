@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block title %}
+<title>Vendor Detail</title>
+{% endblock %} {% block content %}
+<h1>Vendor Detail</h1>
+
+<div class="card">
+  <div class="card-content">
+    <span class="card-title"> {{ vendor.name }}</span>
+    <p>Location: {{ vendor.location }}</p>
+    <p>Phone Number: {{ vendor.phone }}</p>
+    <p>Email: {{ vendor.email }}</p>
+  </div>
+  <div class="card-action">
+    <a href="{% url 'vendor_update' vendor.id %}">Update</a>
+    <a href="{% url 'vendor_delete' vendor.id %}">Delete</a>
+  </div>
+</div>
+{% endblock %}

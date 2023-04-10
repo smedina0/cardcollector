@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block title %}
+<title>Add a Vendor</title>
+{% endblock %} {% block content %}
+<h1>Add a Vendor</h1>
+
+<form action="" method="POST">
+  {% csrf_token %} {{form}}
+
+  <input type="submit" class="btn" />
+</form>
+{% endblock %}

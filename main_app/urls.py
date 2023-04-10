@@ -13,4 +13,12 @@ urlpatterns = [
     path('cards/<int:pk>/delete/', views.CardDelete.as_view(), name='card_delete'),
     path('cards/<int:card_id>/add_cleaning/',
          views.add_cleaning, name='add_cleaning'),
+    path('vendors/', views.VendorList.as_view(), name='vendor_index'),
+    path('vendors/<int:vendor_id>/',
+         views.VendorDetail.as_view(), name='vendor_detail'),
+    path('vendors/create/', views.VendorCreate.as_view(), name='vendor_create'),
+    path('vendors/<int:pk>/update/',
+         views.VendorUpdate.as_view(), name='vendor_update'),
+    path('vendors/<int:pk>/delete/',
+         views.VendorDelete.as_view(), name='vendor_delete'),
 ]
