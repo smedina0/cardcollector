@@ -82,7 +82,11 @@ WSGI_APPLICATION = 'cardcollector.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cardcollector',
+        'NAME': 'smedina2494/cardcollector',
+        'USER': os.environ["USER"],
+        'PASSWORD': os.environ["PASSWORD"],
+        'HOST': 'db.bit.io',
+        'PORT': '5432',
     }
 }
 
