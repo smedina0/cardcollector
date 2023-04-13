@@ -2,7 +2,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #663399;
+  background-color: #fcf6f5ff;
 }
 
 main {
@@ -11,11 +11,20 @@ main {
 
 h1,
 h2 {
-  color: #fff;
+  color: black;
+}
+
+.nav-wrapper {
+  background-color: #990011ff !important;
+}
+
+footer {
+  background-color: #990011ff !important;
 }
 
 p {
-  color: #fff;
+  color: black;
+  font-size: 18pt;
 }
 
 .card-content p {
@@ -26,18 +35,18 @@ p {
 }
 
 label {
-  color: white !important;
+  color: black !important;
   font-size: 30px;
 }
 
 input {
-  border: 1px solid #fff !important;
-  color: white;
+  border: 1px solid black !important;
+  color: black;
 }
 
 textarea {
   border: 1px solid #fff !important;
-  color: white;
+  color: black;
 }
 
 .card-action a {
