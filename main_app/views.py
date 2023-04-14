@@ -4,9 +4,15 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Card, Vendor
+from .models import Card, Vendor, Photo
 from .forms import CleaningForm
 from django.contrib.auth.forms import UserCreationForm
+import uuid
+import boto3
+
+
+S3_BASE_URL = 'https://s3-us-east-2.amazonaws.com/'
+BUCKET = 'cardcollector'
 
 # Create your views here.
 
@@ -108,11 +114,13 @@ class CardDetail(LoginRequiredMixin, DetailView):
         context['vendors_that_dont_have_card'] = vendors_that_dont_have_card
         return context
 
+
 @login_required
 def assoc_vendor(request, card_id, vendor_id):
     card = Card.objects.get(id=card_id)
     card.vendors.add(vendor_id)
     return redirect('card_detail', card_id=card_id)
+
 
 @login_required
 def unassoc_vendor(request, card_id, vendor_id):
@@ -134,6 +142,23 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', {'form': form, 'error_message': error_message})
+
+
+def add_photo(request, card_id):
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        key = uuid.uuid4().hex[:6] + \
+            photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            Photo.objects.create(url=url, card_id=card_id)
+        except Exception as error:
+            print('photo upload failed')
+            print(error)
+    return redirect('card_detail', card_id=card_id)
+
 
 @login_required
 def add_cleaning(request, card_id):

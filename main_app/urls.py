@@ -26,4 +26,5 @@ urlpatterns = [
     path('cards/<int:card_id>/unassoc_vendor/<int:vendor_id>/',
          views.unassoc_vendor, name='unassoc_vendor'),
     path('accounts/signup/', views.signup, name='signup'),
+    path('cards/<int:card_id>/add_photo/', views.add_photo, name='add_photo'),
 ]
