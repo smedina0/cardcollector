@@ -57,3 +57,18 @@ textarea {
 td {
   color: black;
 }
+
+.page-footer p {
+  color: white !important;
+  margin-left: 20px;
+}
+
+.brand-logo {
+  margin-left: 20px;
+}
+
+/* Side Nav */
+
+.side-nav {
+  float: right;
+}

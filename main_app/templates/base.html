@@ -14,12 +14,15 @@
     />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
     <header class="navbar-fixed">
       <nav class="nav-wrapper">
         <a class="left brand-logo" href="/">CardCollector</a>
-        <ul class="right">
+        <a href="#" data-target="mobile-nav" class="sidenav-trigger right" aria-haspopup="true" aria-controls="mobile-nav"><i class="material-icons">dehaze</i></a>
+
+        <ul class="right hide-on-med-and-down">
           <li>
             <a href="{% url 'about' %}">About</a>
           </li>
@@ -49,10 +52,104 @@
           {% endif %}
         </ul>
       </nav>
+     
     </header>
+    <ul class="sidenav" id="mobile-nav">
+      <li>
+        <a href="#" class="sidenav-close-btn" tabindex="-1">
+          <i class="material-icons">close</i> Close
+        </a>
+      </li>
+    <li>
+      <a href="{% url 'about' %}" tabindex="-1">About</a>
+    </li>
+    {% if user.is_authenticated %}
+    <li>
+      <a href="{% url 'card_index' %}" tabindex="-1">Card List</a>
+    </li>
+    <li>
+      <a href="{% url 'card_create' %}" tabindex="-1">Add a Card</a>
+    </li>
+    <li>
+      <a href="{% url 'vendor_index' %}" tabindex="-1">Vendors</a>
+    </li>
+    <li>
+      <a href="{% url 'vendor_create' %}" tabindex="-1">Add a Vendor</a>
+    </li>
+    <li>
+      <a href="{% url 'logout' %}" tabindex="-1">Log Out</a>
+    </li>
+    {% else %}
+    <li>
+      <a href="{% url 'login' %}" tabindex="-1">Login</a>
+    </li>
+    <li>
+      <a href="{% url 'signup' %}" tabindex="-1">Sign Up</a>
+    </li>
+    {% endif %}
+  </ul>
     <main class="container">{% block content %} {% endblock %}</main>
     <footer class="page-footer">
       <p>&copy; 2021 CardCollector</p>
     </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var elems = document.querySelectorAll(".sidenav");
+        var instances = M.Sidenav.init(elems);
+      });
+    
+      function toggleAriaHidden() {
+        var largeScreen = window.matchMedia("(min-width: 992px)");
+        var mobileNav = document.getElementById("mobile-nav");
+        var mainNav = document.querySelector(".nav-wrapper > ul");
+    
+        if (largeScreen.matches) {
+          mobileNav.setAttribute("aria-hidden", "true");
+          mainNav.setAttribute("aria-hidden", "false");
+        } else {
+          mobileNav.setAttribute("aria-hidden", "false");
+          mainNav.setAttribute("aria-hidden", "true");
+        }
+      }
+    
+      function onSidenavOpen() {
+        var mobileNav = document.getElementById("mobile-nav");
+        mobileNav.setAttribute("aria-hidden", "false");
+        var links = mobileNav.getElementsByTagName("a");
+        for (var i = 0; i < links.length; i++) {
+          links[i].setAttribute("tabindex", "0");
+        }
+      }
+    
+      function onSidenavClose() {
+        var mobileNav = document.getElementById("mobile-nav");
+        mobileNav.setAttribute("aria-hidden", "true");
+        var links = mobileNav.getElementsByTagName("a");
+        for (var i = 0; i < links.length; i++) {
+          links[i].setAttribute("tabindex", "-1");
+        }
+      }
+    
+      window.addEventListener("resize", toggleAriaHidden);
+      document.addEventListener("DOMContentLoaded", function () {
+        toggleAriaHidden();
+    
+        var elems = document.querySelectorAll(".sidenav");
+        var instances = M.Sidenav.init(elems, {
+          onOpenStart: onSidenavOpen,
+          onCloseStart: onSidenavClose,
+        });
+    
+        var closeBtn = document.querySelector(".sidenav-close-btn");
+        closeBtn.addEventListener("click", function () {
+          var sidenavInstance = M.Sidenav.getInstance(
+            document.getElementById("mobile-nav")
+          );
+          sidenavInstance.close();
+        });
+      });
+    </script>
+    
+    
   </body>
 </html>

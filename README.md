@@ -2,7 +2,7 @@
 
 ## Summary
 
-This app allows users to store their favorite cards and search data on them.
+This app allows users to store their favorite cards and record card cleanings/tools as well as locations of vendors that card is available at.
 
 ## Technologies Used
 
@@ -19,7 +19,7 @@ Not yet complete
 
 ## Getting Started
 
-Not yet deployed
+[Launch Cardcollector!](https://cardcollector.herokuapp.com/)
 
 ## Future Enhancements
 
