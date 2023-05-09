@@ -23,7 +23,7 @@ This app allows users to store their favorite cards and record card cleanings/to
 
 ![Card Details](https://res.cloudinary.com/dajbkbomv/image/upload/v1683674753/Screenshot_2023-05-09_at_7.18.29_PM_mmr0ac.png)
 
-![More Card Details]([image URL](https://res.cloudinary.com/dajbkbomv/image/upload/v1683674753/Screenshot_2023-05-09_at_7.18.38_PM_kehjhn.png))
+![More Card Details](https://res.cloudinary.com/dajbkbomv/image/upload/v1683674753/Screenshot_2023-05-09_at_7.18.38_PM_kehjhn.png)
 
 
 ## Getting Started
