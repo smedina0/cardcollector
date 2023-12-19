@@ -2,7 +2,7 @@
 
 ## Summary
 
-This app allows users to store their favorite cards and record card cleanings/tools as well as locations of vendors that card is available at.
+This app allows users to store their favorite cards and record card cleanings/tools as well as locations of vendors/stores that card is available at.
 
 ## Technologies Used
 
